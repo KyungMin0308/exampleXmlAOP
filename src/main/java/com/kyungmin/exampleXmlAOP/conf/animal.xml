@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- cat bean 생성 -->
+	<bean id="id_cat" class="com.kyungmin.exampleXmlAOP.main.Cat">
+		<property name="myName" value="Roy"></property>
+		<qualifier value="qf_cat"></qualifier>
+	</bean>
+
+	<!-- dog bean 생성 -->
+	<bean id="id_dog" class="com.kyungmin.exampleXmlAOP.main.Dog">
+		<property name="myName" value="Ari"></property>
+		<qualifier value="qf_dog"></qualifier>
+	</bean>
+	
+	<!-- petOwner bean 생성 -->
+	<bean id="id_petOwner" class="com.kyungmin.exampleXmlAOP.main.PetOwner">
+	</bean>
+	
+	<!-- Spring Annotation 활성화 -->
+	<context:annotation-config></context:annotation-config>
+	
+	<!-- logger bean 생성 -->
+	<bean id="id_logger" class="com.kyungmin.exampleXmlAOP.main.Logger">
+	</bean>
+	
+	<!-- AOP 적용 -->
+	<aop:config>
+		<aop:aspect ref="id_logger" id="id_aspect">
+			<aop:pointcut expression="execution(void com.kyungmin.exampleXmlAOP.main.*.sound())" id="selectSound" />
+			<aop:before method="aboutToSound" pointcut-ref="selectSound" />
+		</aop:aspect>
+	</aop:config>
+	
+</beans>
