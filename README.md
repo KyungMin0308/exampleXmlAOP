@@ -11,7 +11,7 @@
 
 ### **3. Packages**
 * **main**
-  + 의존성 주입을 위한 예제 코드들
+  + 관점 지향 프로그래밍을 위한 예제 코드들
   + **AnimalType** : 인터페이스
   + **Cat, Dog** : AnimalType을 구현한 클래스
   + **PetOwner** : AnimalType 의존성 주입을 위한 클래스
